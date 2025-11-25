@@ -1,1 +1,1 @@
-# deepprune.github.io
+# deep-research-survey.github.io
