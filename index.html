@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> DeepPrune </title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16'><text x='0' y='14' font-size='14'>🌿</text></svg>">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/leaderboard.css">
+  <link rel="stylesheet" href="./static/css/video-player.css">
+
+  <!-- <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bulma.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script> -->
+  <script type="text/javascript" src="static/js/sort-table.js" defer></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/explorer-index.js"></script>
+  <script src="./static/js/question_card.js"></script>
+
+  <script src="./static/js/leaderboard_testmini.js"></script>  
+  <script src="./data/results/output_folders.js" defer></script>
+  <script src="./data/results/model_scores.js" defer></script>
+
+  <script src="./visualizer/data/data_public.js" defer></script>
+
+  <style>
+    .no-sort {
+        cursor: default;
+        pointer-events: none;
+        background-image: none !important; /* Remove the sort arrow */
+    }
+  </style>
+
+</head>
+<body>
+
+  
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <p style="font-size:18px; display: inline; margin-right: -2px; margin-top: 12px;">🔥</p>
+        <a class="navbar-link">
+          More Research for Long CoT Reasoning
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://longbench2.github.io/">
+            <b>LongBench v2</b> 
+          </a>
+          <a class="navbar-item" href="https://github.com/THU-KEG/AdaptThink">
+            <b>AdaptThink</b> 
+          </a>
+          <a class="navbar-item" href="https://arxiv.org/pdf/2509.25176v1">
+            <b>SIRI</b> 
+          </a>
+          <!-- <a class="navbar-item" href="https://github.com/THUDM/LongCite">
+            <b>LongCite</b> 
+          </a> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title is-bold">
+            <!-- <img src="static/images/logo.png" style="width:4.6em;vertical-align: middle" alt="Logo"/> -->
+            <span class="longbench" style="vertical-align: middle">DeepPrune</span>
+            </h1>
+          <h2 class="subtitle is-3 publication-subtitle", style="margin-bottom: 20px;">
+            Parallel Scaling without Inter-trace Redundancy
+          </h2>
+          
+          <div class="is-size-5 publication-authors", style="width: 80%; margin: 20px auto;", >
+            <span class="author-block", style="font-size:24px"><a href="https://github.com/THU-KEG">THU-KEG Team</a></span>
+
+        </div>
+
+          <div class="is-size-5 publication-authors">
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2510.08483"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>ArXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/THU-KEG/DeepPrune"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/THU-KEG/DeepPrune"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <!-- <i class="far fa-images"></i> -->
+                      <p style="font-size:18px">📊</p>
+                  </span>
+                  <span>Dataset</span>
+                </a>
+              </span> 
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/THU-KEG/DeepPrune-Judge-4B"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <!-- <i class="far fa-images"></i> -->
+                      <p style="font-size:18px">🤖</p>
+                  </span>
+                  <span>Model</span>
+                </a>
+              </span> 
+              <!-- Leaderboard Link. -->
+              <span class="link-block">
+                <a href="#leaderboard"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <p style="font-size:18px">🏆</p>
+                  </span>
+                  <span>Leaderboard</span>
+                </a>
+              </span>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="text-align:center;">
+  <img src="static/images/motivation.png" alt="LongBench v2 frontier" style="max-width:40%;">
+</div>
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+
+Parallel scaling has emerged as a powerful paradigm to enhance reasoning capabilities in large language models (LLMs) by generating multiple Chain-of-Thought (CoT) traces simultaneously. However, this approach introduces significant computational inefficiency due to <strong>inter-trace redundancy</strong>---our analysis reveals that over 80\% of parallel reasoning traces yield identical final answers, representing substantial wasted computation. To address this critical efficiency bottleneck, we propose <strong>DeepPrune</strong>, a novel framework that enables efficient parallel scaling through dynamic pruning. Our method features a specialized judge model trained with focal loss and oversampling techniques to accurately predict answer equivalence from partial reasoning traces which realizes 0.87 AUROC on equivalence prediction, combined with an online greedy clustering algorithm that dynamically prunes redundant paths while preserving answer diversity. Comprehensive evaluations across three challenging benchmarks (AIME 2024, AIME 2025, and GPQA) and multiple reasoning models demonstrate that DeepPrune achieves remarkable token reduction by over 80\% compared to conventional consensus sampling on most cases, while maintaining competitive accuracy within 3 percentage points. Our work establishes a new standard for efficient parallel reasoning, making high-performance reasoning more efficient.
+
+          <br></br>
+          🔍 <strong>With DeepPrune, we are eager to find out how to achieve high performance with low token cost in inference-time scaling scenarios.</strong>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    updateRowNumbers();
+    document.querySelector("#results").addEventListener("click", updateRowNumbers);
+  });
+
+  function updateRowNumbers() {
+    const rows = document.querySelectorAll("#results tbody tr");
+    rows.forEach((row, index) => {
+      row.querySelector("td").innerText = index + 1;
+    });
+  }
+</script>
+
+<!-- DATASET SECTION -->
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+  <h1 class="title is-1 mathvista_other">
+    <span class="mathvista_other" style="vertical-align: middle">Method</span>
+  </h1>
+  </div>
+</section>
+            
+<section class="section">
+  <div class="container">
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-centered">
+          <h2 class="title is-3" style="margin-top: 30px;">Motivation</h2>
+          
+          <!-- <img src="static/images/motivation.png" alt="grade-lv" width="70%"/> -->
+
+        <p style="text-align: center; margin-left: auto; margin-right: auto; width: 80%;"> 
+          Generally, there are two types of inference-time scaling: sequential scaling and parallel scaling.
+          Sequential scaling focuses on increasing the computation in one reasoning trace like expanding the output length to 128k. While parallel scaling (e.g. best-of-n sampling) encourages generating multiple reasoning traces simultaneously, further pushing the total token cost to 100M or higher. However, beneath these advances lies a practical question: <strong>How to achieve high performance with low token cost?</strong> 
+   </p>
+     <p style="text-align: center; margin-left: auto; margin-right: auto; width: 80%;"> 
+          Existing efficient reasoning methods mainly focus on alleviating the over-thinking of sequential scaling. There are few works designed for parallel scaling, which typically adopt the LLM's internal signal like confidence for early stopping to improve the sampling efficiency. However, these <a href="https://arxiv.org/pdf/2508.15260" target="_blank">confidence-based methods</a> suffer from two fundamental limitations: (1) they fail to reduce redundancy <strong>between</strong> parallel reasoning paths, and (2) they risk prematurely terminating correct reasoning traces.
+        
+
+        </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-centered">
+          <h2 class="title is-3" style="margin-top: 30px;">Preliminary Experiment</h2>
+          
+          <img src="static/images/preliminary.png" alt="grade-lv" width="70%"/>
+
+        <p style="text-align: left; margin-left: auto; margin-right: auto; width: 60%;"> 
+          (a) <strong>Distribution of same vs. different answer pairs of reasoning traces, revealing severe redundancy</strong>; <br>(b) <strong>ROC curve for shallow semantic similarity (SentenceBERT) to distinguish traces with same answers from those with different ones, which shows limited predictive power</strong>; </br>(c) <strong>ROC curve for LLM-based deep comparison (Qwen3-4B-Instruct) achieves moderate improvement</strong>.
+        </p>
+
+        <!-- <img src="static/images/table.png" alt="grade-lv" width="60%"/>
+        <p style="text-align: center; margin-left: auto; margin-right: auto; width: 70%;"> 
+          <strong>Tasks and data statistics in LongBench v2</strong>. 'Length' is the <strong>median</strong> of the number of words. 'Expert Acc' and 'Expert Time' refer to the average accuracy and the <strong>median</strong> time spent on answering the question by human experts.
+      </p> -->
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-centered">
+          <h2 class="title is-3" style="margin-top: 30px;">Method Framework</h2>
+          
+          <img src="static/images/pipeline.png" alt="grade-lv" width="70%"/>
+
+        <p style="text-align: center; margin-left: auto; margin-right: auto; width: 80%;"> 
+          <strong>Overview of the DeepPrune framework.</strong> The <em>offline training</em> phase (top) involves constructing trace pair datasets with binary labels indicating answer equivalence, then training a judge model using focal loss and oversampling to address class imbalance. The <em>online pruning</em> phase (bottom) leverages the trained judge model to perform dynamic pruning via greedy clustering where traces are assigned to existing clusters or new ones based on similarity predictions, and concludes with majority voting on selected traces to determine the final answer.
+        </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    
+    <div class="columns is-centered">
+      <div class="column is-full has-text-centered content">
+
+        <h2 class="title is-3" id="leaderboard">Leaderboard</h2>
+        <div class="content">
+          <p class="mt-3">📢 The leaderboard is constantly updating as we are welcoming new submissions! <a href="mailto:tsq25@mails.tsinghua.edu.cn">Please email us!</a>
+          </p>
+          <p class="mt-3">We consider the token consumption and accuracy of three widely-used reasoning models, <a href="https://huggingface.co/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B">DeepSeek-8B</a>, <a href="https://huggingface.co/Qwen/Qwen3-32B">Qwen3-32B</a>, and <a href="https://huggingface.co/openai/gpt-oss-20b">GPT-OSS-20B</a> on three benchmarks:
+          </p>
+          <div class="word-count">
+            <p>
+              <strong>AIME24</strong>:  30 problems  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>AIME25</strong>:  30 problems  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>GPQA-Diamond</strong>:  198 problems
+            </p>
+            <p>
+               To view other sorted results, please <strong>click</strong> on the corresponding cell.
+            </p>
+          </div>
+
+         <table class="js-sort-table" id="results" style="margin-left: auto; margin-right: auto;">
+            <thead>
+              <tr>
+                <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 50px;" data-js-sort-colNum="none"><strong>#</strong></th>
+                <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 150px;" data-js-sort-colNum="none"><strong>Method</strong></th>
+                <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 100px;" data-js-sort-colNum="none"><strong>Date</strong></th>
+                <th colspan="6" style="vertical-align: middle; width: 600px;" data-js-sort-colNum="3"><strong>DeepSeek-8B</strong></th>
+                <th colspan="6" style="vertical-align: middle; width: 600px;" data-js-sort-colNum="9"><strong>Qwen3-32B</strong></th>
+                <th colspan="6" style="vertical-align: middle; width: 600px;" data-js-sort-colNum="15"><strong>GPT-OSS-20B</strong></th>
+              </tr>
+              <tr>
+                <th colspan="2" style="vertical-align: middle;" data-js-sort-colNum="3"><strong>AIME24</strong></th>
+                <th colspan="2" style="vertical-align: middle;" data-js-sort-colNum="5"><strong>AIME25</strong></th>
+                <th colspan="2" style="vertical-align: middle;" data-js-sort-colNum="7"><strong>GPQA</strong></th>
+                <th colspan="2" style="vertical-align: middle;" data-js-sort-colNum="9"><strong>AIME24</strong></th>
+                <th colspan="2" style="vertical-align: middle;" data-js-sort-colNum="11"><strong>AIME25</strong></th>
+                <th colspan="2" style="vertical-align: middle;" data-js-sort-colNum="13"><strong>GPQA</strong></th>
+                <th colspan="2" style="vertical-align: middle;" data-js-sort-colNum="15"><strong>AIME24</strong></th>
+                <th colspan="2" style="vertical-align: middle;" data-js-sort-colNum="17"><strong>AIME25</strong></th>
+                <th colspan="2" style="vertical-align: middle;" data-js-sort-colNum="19"><strong>GPQA</strong></th>
+              </tr>
+              <tr>
+                <th style="vertical-align: middle;"></th>
+                <th style="vertical-align: middle;"></th>
+                <th style="vertical-align: middle;"></th>
+                <th style="vertical-align: middle;"><strong>Token</strong></th>
+                <th style="vertical-align: middle;"><strong>Acc</strong></th>
+                <th style="vertical-align: middle;"><strong>Token</strong></th>
+                <th style="vertical-align: middle;"><strong>Acc</strong></th>
+                <th style="vertical-align: middle;"><strong>Token</strong></th>
+                <th style="vertical-align: middle;"><strong>Acc</strong></th>
+                <th style="vertical-align: middle;"><strong>Token</strong></th>
+                <th style="vertical-align: middle;"><strong>Acc</strong></th>
+                <th style="vertical-align: middle;"><strong>Token</strong></th>
+                <th style="vertical-align: middle;"><strong>Acc</strong></th>
+                <th style="vertical-align: middle;"><strong>Token</strong></th>
+                <th style="vertical-align: middle;"><strong>Acc</strong></th>
+                <th style="vertical-align: middle;"><strong>Token</strong></th>
+                <th style="vertical-align: middle;"><strong>Acc</strong></th>
+                <th style="vertical-align: middle;"><strong>Token</strong></th>
+                <th style="vertical-align: middle;"><strong>Acc</strong></th>
+                <th style="vertical-align: middle;"><strong>Token</strong></th>
+                <th style="vertical-align: middle;"><strong>Acc</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="vertical-align: middle;">1</td>
+               <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://arxiv.org/pdf/2508.15260" class="ext-link" style="font-size: 16px; margin-left: 5px;">cons@512<span style="font-size: 12px; position: relative; top: -5px; margin-left: 4px;">📝</span><p style="font-size: 12px; margin-left: 5px; color: #858383;">Meta</p>
+              </a></b></td>
+                <td style="vertical-align: middle;"><p style="color: #22a56e; font-size: 16px;" >2025-08-21</p></td>
+                <td style="vertical-align: middle;">3.55</td>
+                <td style="vertical-align: middle;">86.7%</td>
+                <td style="vertical-align: middle;">4.01</td>
+                <td style="vertical-align: middle;">82.3%</td>
+                <td style="vertical-align: middle;">9.92</td>
+                <td style="vertical-align: middle;">72.5%</td>
+                <td style="vertical-align: middle;">2.00</td>
+                <td style="vertical-align: middle;">84.8%</td>
+                <td style="vertical-align: middle;">2.43</td>
+                <td style="vertical-align: middle;">80.1%</td>
+                <td style="vertical-align: middle;">7.44</td>
+                <td style="vertical-align: middle;">72.2%</td>
+                <td style="vertical-align: middle;">5.57</td>
+                <td style="vertical-align: middle;"><u>96.7%</u></td>
+                <td style="vertical-align: middle;">6.26</td>
+                <td style="vertical-align: middle;">95.4%</td>
+                <td style="vertical-align: middle;">-</td>
+                <td style="vertical-align: middle;">-</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;">2</td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://arxiv.org/pdf/2508.15260" class="ext-link" style="font-size: 16px; margin-left: 5px;">DeepConf-high<span style="font-size: 12px; position: relative; top: -5px; margin-left: 4px;">📝</span><p style="font-size: 12px; margin-left: 5px; color: #858383;">Meta</p>
+              </a></b></td>
+                <td style="vertical-align: middle;"><p style="color: #22a56e; font-size: 16px;" >2025-08-21</p></td>
+                <td style="vertical-align: middle;">1.45</td>
+                <td style="vertical-align: middle;">86.7%</td>
+                <td style="vertical-align: middle;">2.37</td>
+                <td style="vertical-align: middle;">81.4%</td>
+                <td style="vertical-align: middle;">6.90</td>
+                <td style="vertical-align: middle;">72.4%</td>
+                <td style="vertical-align: middle;">0.88</td>
+                <td style="vertical-align: middle;">86.4%</td>
+                <td style="vertical-align: middle;">1.61</td>
+                <td style="vertical-align: middle;">80.2%</td>
+                <td style="vertical-align: middle;">4.16</td>
+                <td style="vertical-align: middle;">72.9%</td>
+                <td style="vertical-align: middle;">3.07</td>
+                <td style="vertical-align: middle;"><u>96.7%</u></td>
+                <td style="vertical-align: middle;">3.18</td>
+                <td style="vertical-align: middle;">95.3%</td>
+                <td style="vertical-align: middle;">-</td>
+                <td style="vertical-align: middle;">-</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;">3</td>
+               <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://arxiv.org/pdf/2508.15260" class="ext-link" style="font-size: 16px; margin-left: 5px;">DeepConf-low<span style="font-size: 12px; position: relative; top: -5px; margin-left: 4px;">📝</span><p style="font-size: 12px; margin-left: 5px; color: #858383;">Meta</p>
+              </a></b></td>
+       
+                <td style="vertical-align: middle;"><p style="color: #22a56e; font-size: 16px;" >2025-08-21</p></td>
+                <td style="vertical-align: middle;">0.78</td>
+                <td style="vertical-align: middle;"><u>92.5%</u></td>
+                <td style="vertical-align: middle;">1.24</td>
+                <td style="vertical-align: middle;"><u>86.4%</u></td>
+                <td style="vertical-align: middle;">3.46</td>
+                <td style="vertical-align: middle;"><u>71.7%</u></td>
+                <td style="vertical-align: middle;">0.66</td>
+                <td style="vertical-align: middle;">89.5%</td>
+                <td style="vertical-align: middle;">1.14</td>
+                <td style="vertical-align: middle;">80.2%</td>
+                <td style="vertical-align: middle;">3.21</td>
+                <td style="vertical-align: middle;"><u>73.0%</u></td>
+                <td style="vertical-align: middle;">1.11</td>
+                <td style="vertical-align: middle;">95.7%</td>
+                <td style="vertical-align: middle;">1.21</td>
+                <td style="vertical-align: middle;"><u>96.1%</u></td>
+                <td style="vertical-align: middle;">-</td>
+                <td style="vertical-align: middle;">-</td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;">4</td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://github.com/THU-KEG/DeepPrune" class="ext-link" style="font-size: 16px; margin-left: 5px;">cons@512<p style="font-size: 12px; margin-left: 5px; color: #858383;">Tsinghua</p>
+                <td style="vertical-align: middle;"><p style="color: #22a56e; font-size: 16px;" >2025-10-10</p></td>
+                <td style="vertical-align: middle;">3.62</td>
+                <td style="vertical-align: middle;">86.7%</td>
+                <td style="vertical-align: middle;">4.19</td>
+                <td style="vertical-align: middle;">83.3%</td>
+                <td style="vertical-align: middle;">10.9</td>
+                <td style="vertical-align: middle;">66.2%</td>
+                <td style="vertical-align: middle;">1.93</td>
+                <td style="vertical-align: middle;">86.7%</td>
+                <td style="vertical-align: middle;">2.64</td>
+                <td style="vertical-align: middle;">80.0%</td>
+                <td style="vertical-align: middle;">6.94</td>
+                <td style="vertical-align: middle;">70.7%</td>
+                <td style="vertical-align: middle;">2.05</td>
+                <td style="vertical-align: middle;">93.3%</td>
+                <td style="vertical-align: middle;">2.10</td>
+                <td style="vertical-align: middle;">90.0%</td>
+                <td style="vertical-align: middle;">4.60</td>
+                <td style="vertical-align: middle;"><u>70.7%</u></td>
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;">5</td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://github.com/THU-KEG/DeepPrune" class="ext-link" style="font-size: 16px; margin-left: 5px;">DeepPrune<p style="font-size: 12px; margin-left: 5px; color: #858383;">Tsinghua</p>
+              </a></b></td>
+                <td style="vertical-align: middle;"><p style="color: #22a56e; font-size: 16px;" >2025-10-10</p></td>
+                <td style="vertical-align: middle;"><b>0.42</b></td>
+                <td style="vertical-align: middle;">86.7%</td>
+                <td style="vertical-align: middle;"><b>0.35</b></td>
+                <td style="vertical-align: middle;">83.3%</td>
+                <td style="vertical-align: middle;"><b>2.54</b></td>
+                <td style="vertical-align: middle;">63.1%</td>
+                <td style="vertical-align: middle;"><b>0.26</b></td>
+                <td style="vertical-align: middle;"><u>90.0%</u></td>
+                <td style="vertical-align: middle;"><b>0.23</b></td>
+                <td style="vertical-align: middle;"><u>90.0%</u></td>
+                <td style="vertical-align: middle;"><b>1.00</b></td>
+                <td style="vertical-align: middle;">70.2%</td>
+                <td style="vertical-align: middle;"><b>0.42</b></td>
+                <td style="vertical-align: middle;">90.0%</td>
+                <td style="vertical-align: middle;"><b>0.38</b></td>
+                <td style="vertical-align: middle;">93.3%</td>
+                <td style="vertical-align: middle;"><b>2.20</b></td>
+                <td style="vertical-align: middle;">68.7%</td>
+              </tr>
+            </tbody>
+          </table>
+
+        <p style="margin-top: -20px;">
+          <!-- <strong style="color: #22a56e; font-size: 18px;" >Green date</strong> indicates the newly added/updated models  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp -->
+          📝 indicates the result is taken from the method's corresponding paper
+        </p>
+
+        <p style=" text-align: left;">
+          1*. The comparison is for end-to-end reasoning system that combines the reasoning model with parallel scaling methods like DeepConf or self-consistency (e.g. cons@512).
+          </br>2*. The token consumption is counted in 10^8.
+          </br>3*. The cons@512 method means sampling 512 parallel traces with majority voting for final result.
+          </br>4*. The system with least token consumption is in <strong>bold</strong>, and the one with highest accuracy is <u>underlined</u>.
+          </br>5*. If you want to develop new methods, you can refer to our established <a href="https://huggingface.co/datasets/THU-KEG/DeepPrune#%F0%9F%8C%90-online-evaluation-datasets">reasoning trace dataset</a> of the three reasoning models. Based on these existing traces, you can build your own answer aggregation strategies or early stopping methods without running the base reasoning model again.
+        </p>
+
+        <p>
+          <strong style="color: #22a56e; font-size: 18px;" >Last Update: 2025-10-10</strong>
+        </p>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- RESULTS SECTION -->
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista_other">Experiment Results</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths" style="width: 70%;">
+      <div class="content has-text-justified">
+
+      <div id="results-carousel" class="carousel results-carousel">  
+        
+          <div class="content has-text-centered">
+
+            <img src="static/images/exp_tb1.png" style="width: 90%;"/>
+              <p>The offline evaluation results of the judge model across different truncation methods and training strategies.<br></br></p>
+          
+          </div>
+        
+          <div class="content has-text-centered">
+
+            <img src="static/images/exp_tb3.png" style="width: 90%;"/>
+              <p style="text-align: center; margin-left: auto; margin-right: auto; width: 90%;">Performance of DeepPrune with varying redundancy threshold τ on AIME datasets for Qwen3-32B. Token consumption, pass rate and accuracy are reported for two pruning settings: (1) Conduct greedy clustering then retains only one trace per cluster, (2) Perform majority voting to get one final answer with the largest cluster.</p>
+          
+          </div>
+
+          <div class="content has-text-centered">
+
+            <img src="static/images/exp_fig4.png" style="width: 90%;"/>
+              <p>Ablation study on judge model with different truncation strategies for unfinished reasoning traces.<br></br></p>
+          
+          </div>
+
+      </div>
+
+        
+      </div>
+    </div> 
+
+      </div>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+
+</section>
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista_other" id="citation">Citation</h1>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <p>If you find our work useful, please cite:</p>
+    <pre><code>
+      @article{tu2025deepprune,
+        title={DeepPrune: Parallel Scaling without Inter-trace Redundancy}, 
+        author={Shangqing Tu, Yaxuan Li, Yushi Bai, Lei Hou, Juanzi Li},
+        journal={arXiv preprint arXiv:2510.08483},
+        year={2025}
+      }
+</code></pre>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container" style="width: 60%;">
+  <style>
+      pre {
+        background-color: #f4f4f4;
+        padding: 5px; /* 调整padding为5px */
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow-x: auto; /* 允许水平滚动 */
+    }
+    code {
+        font-family: Consolas, "Courier New", monospace;
+        color: #d63384; /* 代码文本颜色 */
+    }
+  </style>
+
+
+  </div>
+</section>
+
+
+<footer class="footer">
+  <!-- <div class="container"> -->
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p style="text-align: center;">
+            This website is adapted from <a href="https://mathvista.github.io/">MathVista</a> and <a href="https://video-mme.github.io/">VideoMME</a>, licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+        <div style="text-align: center; width: 50%; margin: 0 auto;"><script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=LjkgQrDVmr7Xv2L7DXcPg9-QWgqXRtGMD9A3nCCDYto&cl=ffffff&w=a"></script></div>
+      </div>
+    </div>
+  <!-- </div> -->
+</footer>
+
+</body>
+</html>
+
